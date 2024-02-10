@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Form</title>
+    <style>
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="email"], input[type="date"], select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        input[type="submit"], input[type="reset"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        input[type="submit"]:hover, input[type="reset"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Survey Form</h2>
+<form id="surveyForm" onsubmit="submitForm(); return false;">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" required>
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" required>
+
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" required>
+
+    <label for="country">Country:</label>
+    <select id="country" required>
+        <option value="">Select Country</option>
+        <option value="USA">USA</option>
+        <option value="UK">UK</option>
+        <option value="Canada">Canada</option>
+        <!-- Add more countries as needed -->
+    </select>
+
+    <label>Gender:</label>
+    <input type="checkbox" id="maleCheckbox" value="Male">
+    <label for="maleCheckbox">Male</label>
+    <input type="checkbox" id="femaleCheckbox" value="Female">
+    <label for="femaleCheckbox">Female</label>
+    <input type="checkbox" id="otherCheckbox" value="Other">
+    <label for="otherCheckbox">Other</label>
+
+    <label for="profession">Profession:</label>
+    <input type="text" id="profession" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" required>
+
+    <label for="mobile">Mobile Number:</label>
+    <input type="text" id="mobile" pattern="[0-9]{10}" required>
+    
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+</form>
+
+<script>
+    function submitForm() {
+        // Get form values
+        let firstName = document.getElementById('firstName').value;
+        let lastName = document.getElementById('lastName').value;
+        let dob = document.getElementById('dob').value;
+        let country = document.getElementById('country').value;
+        let gender = [];
+        if (document.getElementById('maleCheckbox').checked) {
+            gender.push(document.getElementById('maleCheckbox').value);
+        }
+        if (document.getElementById('femaleCheckbox').checked) {
+            gender.push(document.getElementById('femaleCheckbox').value);
+        }
+        if (document.getElementById('otherCheckbox').checked) {
+            gender.push(document.getElementById('otherCheckbox').value);
+        }
+        let profession = document.getElementById('profession').value;
+        let email = document.getElementById('email').value;
+        let mobile = document.getElementById('mobile').value;
+
+        // Display values in popup
+        let message = "First Name: " + firstName + "\n" +
+                      "Last Name: " + lastName + "\n" +
+                      "Date of Birth: " + dob + "\n" +
+                      "Country: " + country + "\n" +
+                      "Gender: " + gender.join(", ") + "\n" +
+                      "Profession: " + profession + "\n" +
+                      "Email: " + email + "\n" +
+                      "Mobile Number: " + mobile;
+        alert(message);
+
+        // Reset form
+        document.getElementById('surveyForm').reset();
+    }
+</script>
+
+</body>
+</html>
